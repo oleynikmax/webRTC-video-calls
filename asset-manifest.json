@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/webRTC-video-calls/static/css/main.fb90df62.css",
-    "main.js": "/webRTC-video-calls/static/js/main.0180699e.js",
+    "main.js": "/webRTC-video-calls/static/js/main.b92bf01c.js",
     "static/js/453.bd312d56.chunk.js": "/webRTC-video-calls/static/js/453.bd312d56.chunk.js",
     "index.html": "/webRTC-video-calls/index.html",
     "main.fb90df62.css.map": "/webRTC-video-calls/static/css/main.fb90df62.css.map",
-    "main.0180699e.js.map": "/webRTC-video-calls/static/js/main.0180699e.js.map",
+    "main.b92bf01c.js.map": "/webRTC-video-calls/static/js/main.b92bf01c.js.map",
     "453.bd312d56.chunk.js.map": "/webRTC-video-calls/static/js/453.bd312d56.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fb90df62.css",
-    "static/js/main.0180699e.js"
+    "static/js/main.b92bf01c.js"
   ]
 }
