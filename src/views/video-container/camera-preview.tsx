@@ -6,9 +6,6 @@ const CameraPreview: React.FC = () => {
 
     const { stream, error } = useUserMedia();
     const videoRef = useRef<HTMLVideoElement>(null);
-    navigator.mediaDevices.enumerateDevices().then((device)=>{
-        console.log(device);
-    });
     useEffect(() => {
         if (error) {
             console.log(error);

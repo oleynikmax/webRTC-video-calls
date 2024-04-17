@@ -1,53 +1,45 @@
 import { useEffect, useState } from "react";
-import { useMediaDevicesInfo } from "../video-container/media-device-provider";
+import { useMediaDevices } from "../../providers/devices-provider/devices-context-provider";
+import { useSelectedMediaDevices } from "../../providers/selected-device-provider/selected-device-provider";
+import Select from "react-dropdown-select";
 
 
 const Setting: React.FC = () => {
 
-    const { mediaDevices } = useMediaDevicesInfo();
+    const { audioInputDevices, audioOutputDevices, videoInputDevices } = useMediaDevices();
+    const { audioInputDevice, audioOutputDevice, videoInputDevice, selectingHandle } = useSelectedMediaDevices();
 
-    const [videoInputs, setVideoInputs] = useState<MediaDeviceInfo[]>([]);
-    const [audioInputs, setAudioInputs] = useState<MediaDeviceInfo[]>([]);
+
+    const [audioSelected, setaudioSelected] = useState<MediaDeviceInfo[]>();
+    const [videoSelected, setvideoSelected] = useState<MediaDeviceInfo[]>();
+
     useEffect(() => {
-        if (mediaDevices) {
-            const audio: MediaDeviceInfo[] = [];
-            const video: MediaDeviceInfo[] = [];
-            mediaDevices.forEach((x) => {
-                if (x.kind == "audioinput") {
-                    audio.push(x);
-                }
-                if (x.kind == "videoinput") {
-                    video.push(x);
-                }
-            })
-            setAudioInputs(audio);
-            setVideoInputs(video);
+        console.log(audioSelected);
+        if (audioSelected) {
+            selectingHandle(audioSelected[0]);
         }
-    }, [mediaDevices])
+    }, [audioSelected])
+
+    useEffect(() => {
+        console.log(videoSelected);
+        if (videoSelected) {
+            selectingHandle(videoSelected[0]);
+        }
+    }, [videoSelected])
     return (
         <div>
             <div>Test Settings</div>
             <div>
                 <p>Audio inputs</p>
-                {audioInputs.map((audioDevice) => {
-                    return (
-                        <div style={{display:"flex"}}>
-                            <div>{audioDevice.deviceId}</div>
-                            <div>{audioDevice.label}</div>
-                        </div>
-                    );
-                })}
+                <Select options={audioInputDevices} values={audioInputDevice ? [audioInputDevice] : []} labelField="label"
+                    valueField="deviceId" onChange={(val) => setaudioSelected(val)}
+                ></Select >
             </div>
             <div>
                 <p>Video inputs</p>
-                {videoInputs.map((videoDevice) => {
-                    return (
-                        <div style={{display:"flex"}}>
-                            <div>{videoDevice.deviceId}</div>
-                            <div>{videoDevice.label}</div>
-                        </div>
-                    );
-                })}
+                <Select options={videoInputDevices} values={videoInputDevice ? [videoInputDevice] : []} labelField="label"
+                    valueField="deviceId" onChange={(val) => setvideoSelected(val)}
+                ></Select >
             </div>
         </div>
 
